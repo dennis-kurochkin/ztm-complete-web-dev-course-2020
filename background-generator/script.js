@@ -4,7 +4,8 @@ app = (function () {
 		colorInputs: 'input',
 		firstInput: '.color1',
 		secondInput: '.color2',
-		gradientPlacement: '#gradient'
+		gradientPlacement: '#gradient',
+		cssOutputPlacement: '.js-css-output'
 	}
 
 	var generateBackground = function () {
@@ -13,16 +14,21 @@ app = (function () {
 			newBackground = `linear-gradient(to right, ${firstInputBackground} , ${secondInputBackground})`;
 
 		document.querySelector(DOMElements.gradientPlacement).style.background = newBackground;
+
+		outputCss(newBackground);
+	}
+
+	var outputCss = function (backgroundCSS) {
+		document.querySelector(DOMElements.cssOutputPlacement).textContent = backgroundCSS;
 	}
 
 	return {
-		setEventListeners: function () {
+		init: function () {
 
 			document.querySelectorAll(DOMElements.colorInputs).forEach(function (input) {
 
 				input.addEventListener('input', function () {
 					generateBackground();
-					console.log('hi');
 				});
 
 			});
@@ -32,4 +38,4 @@ app = (function () {
 
 })();
 
-app.setEventListeners();
+app.init();
