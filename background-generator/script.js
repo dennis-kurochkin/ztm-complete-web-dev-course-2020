@@ -1,19 +1,35 @@
-var css = document.querySelector("h3");
-var color1 = document.querySelector(".color1");
-var color2 = document.querySelector(".color2");
-var body = document.getElementById("gradient");
+app = (function () {
 
-function setGradient() {
-	body.style.background = 
-	"linear-gradient(to right, " 
-	+ color1.value 
-	+ ", " 
-	+ color2.value 
-	+ ")";
+	var DOMElements = {
+		colorInputs: 'input',
+		firstInput: '.color1',
+		secondInput: '.color2',
+		gradientPlacement: '#gradient'
+	}
 
-	css.textContent = body.style.background + ";";
-}
+	var generateBackground = function () {
+		var firstInputBackground = document.querySelector(DOMElements.firstInput).value,
+			secondInputBackground = document.querySelector(DOMElements.secondInput).value,
+			newBackground = `linear-gradient(to right, ${firstInputBackground} , ${secondInputBackground})`;
 
-color1.addEventListener("input", setGradient);
+		document.querySelector(DOMElements.gradientPlacement).style.background = newBackground;
+	}
 
-color2.addEventListener("input", setGradient);
+	return {
+		setEventListeners: function () {
+
+			document.querySelectorAll(DOMElements.colorInputs).forEach(function (input) {
+
+				input.addEventListener('input', function () {
+					generateBackground();
+					console.log('hi');
+				});
+
+			});
+
+		}
+	}
+
+})();
+
+app.setEventListeners();
