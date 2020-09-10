@@ -19,7 +19,7 @@ app = (function () {
 	}
 
 	var outputCss = function (backgroundCSS) {
-		document.querySelector(DOMElements.cssOutputPlacement).textContent = backgroundCSS;
+		document.querySelector(DOMElements.cssOutputPlacement).textContent = backgroundCSS + ';';
 	}
 
 	return {
