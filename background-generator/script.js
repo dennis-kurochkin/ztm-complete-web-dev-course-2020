@@ -1,3 +1,8 @@
+var _ = require('lodash');
+
+var arr = [1, 2, 3];
+console.log(_.without(arr, 2));
+
 app = (function () {
 
 	var DOMElements = {
