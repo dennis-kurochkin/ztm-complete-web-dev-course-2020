@@ -2,12 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'tachyons';
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { searchRobots } from './reducers';
 import * as serviceWorker from './serviceWorker';
 import App from './containers/App';
 
+const store = createStore(
+  searchRobots,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
