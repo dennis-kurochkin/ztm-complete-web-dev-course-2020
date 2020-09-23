@@ -7,7 +7,7 @@ const isLoggedReducer = (state = false, action) => {
     case LOG_OUT:
       return false;
     default:
-      break;
+      return state;
   }
 }
 

@@ -5,13 +5,9 @@ import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { setSearchField } from '../actions';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
-const mapStateToProps = state => {
-  return {
-    searchField: state.searchRobots.searchField
-  }
-}
+const counter = useSelector(state => state.counter);
 
 class App extends Component {
   constructor() {
@@ -47,6 +43,7 @@ class App extends Component {
       <h1>Loading...</h1> :
       (
         <div className="tc">
+          <h1>Counter: {counter}</h1>
           <h1>RoboFriends</h1>
           <SearchBox searchChange={this.onSearchChange} />
           <Scroll>
@@ -58,7 +55,5 @@ class App extends Component {
       );
   }
 }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default App;

@@ -5,7 +5,7 @@ const searchRobotsReducer = (state = { searchField: '' }, action) => {
     case CHANGE_SEARCH_FIELD:
       return { ...state, searchField: action.payload }
     default:
-      break;
+      return state;
   }
 }
 

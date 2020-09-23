@@ -7,7 +7,7 @@ const counterReducer = (state = 0, action) => {
     case DECREMENT:
       return --state;
     default:
-      break;
+      return state;
   }
 }
 

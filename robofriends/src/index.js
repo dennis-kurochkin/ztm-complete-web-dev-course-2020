@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'tachyons';
-import { Provider } from "react-redux";
+import reducers from './reducers';
 import { createStore } from "redux";
-import reducers from './reducers/index';
+import { Provider } from "react-redux";
 import * as serviceWorker from './serviceWorker';
 import App from './containers/App';
 

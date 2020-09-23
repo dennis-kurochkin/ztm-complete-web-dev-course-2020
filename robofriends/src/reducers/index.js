@@ -4,9 +4,9 @@ import isLoggedReducer from "./isLoggedReducer";
 import searchRobotsReducer from "./searchRobotsReducer";
 
 const reducers = combineReducers({
-  counterReducer: counterReducer,
-  isLoggedReducer: isLoggedReducer,
-  searchRobotsReducer: searchRobotsReducer
+  counter: counterReducer,
+  isLogged: isLoggedReducer,
+  searchRobots: searchRobotsReducer
 });
 
 export default reducers;
