@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
-import './App.css';
+import { connect } from 'react-redux';
+import { setSearchField, increment, decrement } from '../actions';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { setSearchField } from '../actions';
-import { connect, useSelector } from 'react-redux';
+import './App.css';
 
-const counter = useSelector(state => state.counter);
+const mapStateToProps = state => {
+  return {
+    searchField: state.searchRobots.searchField,
+    counter: state.counter.counter
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSearchChange: e => dispatch(setSearchField(e.target.value)),
+    onIncrement: e => dispatch(increment()),
+    onDecrement: e => dispatch(decrement())
+  }
+}
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      robots: [],
-      searchField: ''
+      robots: []
     }
   }
 
@@ -27,13 +39,9 @@ class App extends Component {
       });
   }
 
-  onSearchChange = (e) => {
-    this.setState({ searchField: e.target.value });
-    setSearchField();
-  }
-
   render() {
-    const { robots, searchField } = this.state;
+    const { robots } = this.state;
+    const { searchField, counter, onSearchChange, onIncrement, onDecrement } = this.props;
 
     const filteredRobots = robots.filter(
       robot => robot.name.toLowerCase().includes(searchField.toLowerCase())
@@ -43,9 +51,10 @@ class App extends Component {
       <h1>Loading...</h1> :
       (
         <div className="tc">
-          <h1>Counter: {counter}</h1>
           <h1>RoboFriends</h1>
-          <SearchBox searchChange={this.onSearchChange} />
+          <button onClick={onIncrement}>+</button>
+          <h2>Counter: {counter}</h2>
+          <SearchBox searchChange={onSearchChange} />
           <Scroll>
             <ErrorBoundary>
               <CardList robots={filteredRobots} />
@@ -56,4 +65,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
